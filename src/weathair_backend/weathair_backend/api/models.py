@@ -34,5 +34,5 @@ class AirNowObservation(models.Model):
 class AirNowReportingAreaZipCode(models.Model):
     city = models.CharField(max_length=100, db_index=True)
     state = models.CharField(max_length=2)
-    zipcode = models.IntegerField(db_index=True)
+    zipcode = models.IntegerField(db_index=True, unique=True)
     location = models.PointField()
