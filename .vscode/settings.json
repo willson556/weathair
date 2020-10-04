@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/Users/thomaswillson/virtualenvs/weathair/bin/python"
+    "python.pythonPath": "/Users/thomaswillson/virtualenvs/weathair/bin/python",
+    "cSpell.words": [
+        "groupby",
+        "iterrows",
+        "pydatetime",
+        "pytz"
+    ]
 }

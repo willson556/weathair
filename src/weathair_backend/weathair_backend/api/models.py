@@ -4,16 +4,20 @@ class AirNowForecastSource(models.Model):
     name = models.CharField(max_length=100)
 
 class AirNowReportingArea(models.Model):
-    name = models.CharField(max_length=45)
-    state_code = models.CharField(max_length=2)
+    name = models.CharField(max_length=100, db_index=True)
+    state_code = models.CharField(max_length=2, db_index=True)
     location = models.PointField(spatial_index=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['name', 'state_code']),
+        ]
 
 class AirNowObservation(models.Model):
     reporting_area = models.ForeignKey(AirNowReportingArea, on_delete=models.CASCADE)
 
-    issued_date = models.DateField()
-    valid_date = models.DateField()
-    valid_time = models.TimeField(null=True)
+    issued_date = models.DateTimeField()
+    valid_date = models.DateTimeField()
     record_sequence = models.SmallIntegerField()
 
     parameter_name = models.CharField(max_length=10)
@@ -28,7 +32,7 @@ class AirNowObservation(models.Model):
 
     type = models.CharField(max_length=1, choices=Type.choices)
 
-    discussion = models.CharField(max_length=500)
+    discussion = models.TextField(null=True)
     source = models.ForeignKey(AirNowForecastSource, on_delete=models.CASCADE)
 
 class AirNowReportingAreaZipCode(models.Model):
