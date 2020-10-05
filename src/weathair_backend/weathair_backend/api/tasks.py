@@ -1,7 +1,7 @@
 from contextlib import closing
 from datetime import datetime
 from django.contrib.gis.geos import Point
-from django.db.models import Q
+from django.db import transaction
 from bulk_sync import bulk_sync
 from pandas import isnull
 
@@ -15,7 +15,6 @@ import pytz
 from .models import AirNowForecastSource, AirNowReportingArea, AirNowReportingAreaZipCode, AirNowObservation
 
 CITY_ZIPCODES_URL = "https://files.airnowtech.org/airnow/today/cityzipcodes.csv"
-AQI_DATA_URL = "https://s3-us-west-1.amazonaws.com//files.airnowtech.org/airnow/today/reportingarea.dat"
 
 AQI_DATA_URL = "https://s3-us-west-1.amazonaws.com//files.airnowtech.org/airnow/today/reportingarea.dat"
 AQI_DATA_COLUMN_NAMES = [
@@ -81,7 +80,7 @@ def convert_valid_time(obs):
 def ensure_tz_aware(dt):
     return dt if dt.tzinfo is not None else dt.replace(tzinfo=pytz.UTC)
 
-
+@transaction.atomic
 def update_aqi():
     dataframe = pd.read_csv(AQI_DATA_URL, delimiter='|', usecols=range(17), names=AQI_DATA_COLUMN_NAMES,
                             header=None, parse_dates=AQI_DATA_DATES, infer_datetime_format=True, dayfirst=False)

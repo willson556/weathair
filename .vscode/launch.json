@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Django",
+            "name": "Backend: Update AQI Data",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/weathair_backend/manage.py",
@@ -13,7 +13,17 @@
                 "updateaqidata"
             ],
             "justMyCode": false,
-            // "django": true
+        },
+        {
+            "name": "Backend: Run Dev Server",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/weathair_backend/manage.py",
+            "args": [
+                "runserver"
+            ],
+            "justMyCode": false,
+            "django": true
         }
     ]
 }
