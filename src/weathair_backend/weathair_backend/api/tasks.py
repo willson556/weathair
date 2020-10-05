@@ -48,8 +48,25 @@ def _print_status(status):
           .format(**status['stats']))
 
 
-def find_first(items, condition):
+def _find_first(items, condition):
     return next((i for i in items if condition(i)))
+
+
+def _convert_valid_time(obs):
+    if isnull(obs['ValidTime']) or isnull(obs['TimeZone']):
+        return datetime.strptime(obs['ValidDate'], '%m/%d/%y')
+
+    datestring = f'{obs["ValidDate"]} {obs["ValidTime"]} {obs["TimeZone"]}'
+    date = dateparser.parse(datestring, settings={'DATE_ORDER': 'MDY'})
+
+    if date is None:
+        raise Exception('Date is invalid!', datestring)
+
+    return date
+
+
+def _ensure_tz_aware(dt):
+    return dt if dt.tzinfo is not None else dt.replace(tzinfo=pytz.UTC)
 
 
 def update_cityzipcode():
@@ -64,21 +81,6 @@ def update_cityzipcode():
 
     _print_status(bulk_sync(new_models, ('zipcode', ), None))
 
-
-def convert_valid_time(obs):
-    if isnull(obs['ValidTime']) or isnull(obs['TimeZone']):
-        return datetime.strptime(obs['ValidDate'], '%m/%d/%y')
-
-    datestring = f'{obs["ValidDate"]} {obs["ValidTime"]} {obs["TimeZone"]}'
-    date = dateparser.parse(datestring, settings={'DATE_ORDER': 'MDY'})
-
-    if date is None:
-        raise Exception('Date is invalid!', datestring)
-
-    return date
-
-def ensure_tz_aware(dt):
-    return dt if dt.tzinfo is not None else dt.replace(tzinfo=pytz.UTC)
 
 @transaction.atomic
 def update_aqi():
@@ -99,19 +101,23 @@ def update_aqi():
     reporting_areas_db = list(AirNowReportingArea.objects.all())
     forecast_sources_db = list(AirNowForecastSource.objects.all())
 
-    observations = [AirNowObservation(reporting_area=find_first(reporting_areas_db,
-                                                                lambda a: a.name == o['ReportingArea'] and a.state_code == o['StateCode']),
-                                      issued_date=ensure_tz_aware(o['IssueDateTime'].to_pydatetime()),
-                                      valid_date=ensure_tz_aware(convert_valid_time(o)),
+    observations = [AirNowObservation(reporting_area=_find_first(reporting_areas_db,
+                                                                 lambda a: a.name == o['ReportingArea'] and a.state_code == o['StateCode']),
+                                      issued_date=_ensure_tz_aware(
+                                          o['IssueDateTime'].to_pydatetime()),
+                                      valid_date=_ensure_tz_aware(
+                                          _convert_valid_time(o)),
                                       record_sequence=o['RecordSequence'],
                                       parameter_name=o['ParameterName'],
-                                      aqi_value=o['AQIValue'] if not isnull(o['AQIValue']) else None,
+                                      aqi_value=o['AQIValue'] if not isnull(
+                                          o['AQIValue']) else None,
                                       aqi_category=o['AQICategory'],
                                       primary_pollutant=o['Primary'] == 'Y',
                                       type=o['DataType'],
-                                      discussion=o['Discussion'] if not isnull(o['Discussion']) else None,
-                                      source=find_first(forecast_sources_db,
-                                                        lambda s: s.name == o['ForecastSource']))
+                                      discussion=o['Discussion'] if not isnull(
+                                          o['Discussion']) else None,
+                                      source=_find_first(forecast_sources_db,
+                                                         lambda s: s.name == o['ForecastSource']))
                     for (_, o) in dataframe.iterrows() if o['StateCode'] != '  ']
     _print_status(bulk_sync(observations, ('reporting_area_id', 'issued_date', 'valid_date', 'record_sequence',
                                            'parameter_name', 'aqi_value', 'aqi_category', 'primary_pollutant', 'type'), None))
