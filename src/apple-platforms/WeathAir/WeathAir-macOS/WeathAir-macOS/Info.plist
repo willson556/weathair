@@ -28,5 +28,7 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>The app needs your location to retrieve your zip code.</string>
 </dict>
 </plist>
