@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		D9B47896252AD4B300E86B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47895252AD4B300E86B50 /* Assets.xcassets */; };
 		D9B47899252AD4B300E86B50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47898252AD4B300E86B50 /* Preview Assets.xcassets */; };
 		D9B4789C252AD4B300E86B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B4789A252AD4B300E86B50 /* Main.storyboard */; };
+		D9CD641A25329F8700685AAC /* WeathAir-Shared in Frameworks */ = {isa = PBXBuildFile; productRef = D9CD641925329F8700685AAC /* WeathAir-Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9CD641A25329F8700685AAC /* WeathAir-Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +43,7 @@
 			children = (
 				D9B47890252AD4B300E86B50 /* WeathAir-macOS */,
 				D9B4788F252AD4B300E86B50 /* Products */,
+				D9CD641825329F8700685AAC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +77,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D9CD641825329F8700685AAC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -90,6 +100,9 @@
 			dependencies = (
 			);
 			name = "WeathAir-macOS";
+			packageProductDependencies = (
+				D9CD641925329F8700685AAC /* WeathAir-Shared */,
+			);
 			productName = "WeathAir-macOS";
 			productReference = D9B4788E252AD4B300E86B50 /* WeathAir-macOS.app */;
 			productType = "com.apple.product-type.application";
@@ -348,6 +361,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D9CD641925329F8700685AAC /* WeathAir-Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "WeathAir-Shared";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D9B47886252AD4B300E86B50 /* Project object */;
 }

@@ -26,12 +26,14 @@
 /* Begin PBXFileReference section */
 		D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "WeathAir-iOS.xcodeproj"; path = "WeathAir-iOS/WeathAir-iOS.xcodeproj"; sourceTree = "<group>"; };
 		D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "WeathAir-macOS.xcodeproj"; path = "WeathAir-macOS/WeathAir-macOS.xcodeproj"; sourceTree = "<group>"; };
+		D9CD641725329F3400685AAC /* WeathAir-Shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "WeathAir-Shared"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		D9B47857252AD44200E86B50 = {
 			isa = PBXGroup;
 			children = (
+				D9CD641725329F3400685AAC /* WeathAir-Shared */,
 				D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */,
 				D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */,
 			);
