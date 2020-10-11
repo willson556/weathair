@@ -7,9 +7,8 @@ import SwiftyJSON
 import Foundation
 
 
-class ObservationSource : NSObject, NSCoding{
-
-    var name : String!
+public class ObservationSource : NSObject, NSCoding{
+     var name : String!
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -37,7 +36,7 @@ class ObservationSource : NSObject, NSCoding{
     * NSCoding required initializer.
     * Fills the data from the passed decoder
     */
-    @objc required init(coder aDecoder: NSCoder)
+    @objc required public init(coder aDecoder: NSCoder)
 	{
 		name = aDecoder.decodeObject(forKey: "name") as? String
 	}
@@ -46,7 +45,7 @@ class ObservationSource : NSObject, NSCoding{
     * NSCoding required method.
     * Encodes mode properties into the decoder
     */
-    func encode(with aCoder: NSCoder)
+    public func encode(with aCoder: NSCoder)
 	{
 		if name != nil{
 			aCoder.encode(name, forKey: "name")

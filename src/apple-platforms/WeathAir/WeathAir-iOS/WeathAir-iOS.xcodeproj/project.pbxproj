@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		D9B47871252AD48900E86B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47870252AD48900E86B50 /* Assets.xcassets */; };
 		D9B47874252AD48900E86B50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47873252AD48900E86B50 /* Preview Assets.xcassets */; };
 		D9B47877252AD48900E86B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B47875252AD48900E86B50 /* LaunchScreen.storyboard */; };
-		D9CD641D25329F9100685AAC /* WeathAir-Shared in Frameworks */ = {isa = PBXBuildFile; productRef = D9CD641C25329F9100685AAC /* WeathAir-Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9CD641D25329F9100685AAC /* WeathAir-Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +100,6 @@
 			);
 			name = "WeathAir-iOS";
 			packageProductDependencies = (
-				D9CD641C25329F9100685AAC /* WeathAir-Shared */,
 			);
 			productName = "WeathAir-iOS";
 			productReference = D9B47867252AD48800E86B50 /* WeathAir-iOS.app */;
@@ -358,13 +355,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D9CD641C25329F9100685AAC /* WeathAir-Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "WeathAir-Shared";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D9B4785F252AD48800E86B50 /* Project object */;
 }

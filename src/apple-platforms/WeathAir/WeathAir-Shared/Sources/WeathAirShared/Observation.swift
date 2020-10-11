@@ -7,7 +7,7 @@ import SwiftyJSON
 import Foundation
 
 
-class Observation : NSObject, NSCoding{
+public class Observation : NSObject, NSCoding{
 
     var aqiCategory : String!
     var aqiValue : Int!
@@ -93,7 +93,7 @@ class Observation : NSObject, NSCoding{
     * NSCoding required initializer.
     * Fills the data from the passed decoder
     */
-    @objc required init(coder aDecoder: NSCoder)
+    @objc required public init(coder aDecoder: NSCoder)
 	{
 		aqiCategory = aDecoder.decodeObject(forKey: "aqi_category") as? String
 		aqiValue = aDecoder.decodeObject(forKey: "aqi_value") as? Int
@@ -112,7 +112,7 @@ class Observation : NSObject, NSCoding{
     * NSCoding required method.
     * Encodes mode properties into the decoder
     */
-    func encode(with aCoder: NSCoder)
+    public func encode(with aCoder: NSCoder)
 	{
 		if aqiCategory != nil{
 			aCoder.encode(aqiCategory, forKey: "aqi_category")

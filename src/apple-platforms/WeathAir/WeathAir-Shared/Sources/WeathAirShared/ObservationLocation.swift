@@ -6,7 +6,7 @@
 import SwiftyJSON
 import Foundation
 
-class ObservationLocation : NSObject, NSCoding{
+public class ObservationLocation : NSObject, NSCoding{
 
     var coordinates : [Float]!
     var type : String!
@@ -45,7 +45,7 @@ class ObservationLocation : NSObject, NSCoding{
     * NSCoding required initializer.
     * Fills the data from the passed decoder
     */
-    @objc required init(coder aDecoder: NSCoder)
+    @objc required public init(coder aDecoder: NSCoder)
 	{
 		coordinates = aDecoder.decodeObject(forKey: "coordinates") as? [Float]
 		type = aDecoder.decodeObject(forKey: "type") as? String
@@ -55,7 +55,7 @@ class ObservationLocation : NSObject, NSCoding{
     * NSCoding required method.
     * Encodes mode properties into the decoder
     */
-    func encode(with aCoder: NSCoder)
+    public func encode(with aCoder: NSCoder)
 	{
 		if coordinates != nil{
 			aCoder.encode(coordinates, forKey: "coordinates")

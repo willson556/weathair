@@ -7,7 +7,7 @@ import SwiftyJSON
 import Foundation
 
 
-class ReportingArea : NSObject, NSCoding{
+public class ReportingArea : NSObject, NSCoding{
 
     var location : ObservationLocation!
     var name : String!
@@ -50,7 +50,7 @@ class ReportingArea : NSObject, NSCoding{
     * NSCoding required initializer.
     * Fills the data from the passed decoder
     */
-    @objc required init(coder aDecoder: NSCoder)
+    @objc required public init(coder aDecoder: NSCoder)
 	{
 		location = aDecoder.decodeObject(forKey: "location") as? ObservationLocation
 		name = aDecoder.decodeObject(forKey: "name") as? String
@@ -61,7 +61,7 @@ class ReportingArea : NSObject, NSCoding{
     * NSCoding required method.
     * Encodes mode properties into the decoder
     */
-    func encode(with aCoder: NSCoder)
+    public func encode(with aCoder: NSCoder)
 	{
 		if location != nil{
 			aCoder.encode(location, forKey: "location")

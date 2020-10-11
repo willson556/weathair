@@ -12,7 +12,7 @@
 		D9B47896252AD4B300E86B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47895252AD4B300E86B50 /* Assets.xcassets */; };
 		D9B47899252AD4B300E86B50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47898252AD4B300E86B50 /* Preview Assets.xcassets */; };
 		D9B4789C252AD4B300E86B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B4789A252AD4B300E86B50 /* Main.storyboard */; };
-		D9CD641A25329F8700685AAC /* WeathAir-Shared in Frameworks */ = {isa = PBXBuildFile; productRef = D9CD641925329F8700685AAC /* WeathAir-Shared */; };
+		D9CD64292532A9E700685AAC /* WeathAirShared in Frameworks */ = {isa = PBXBuildFile; productRef = D9CD64282532A9E700685AAC /* WeathAirShared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9CD641A25329F8700685AAC /* WeathAir-Shared in Frameworks */,
+				D9CD64292532A9E700685AAC /* WeathAirShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 			);
 			name = "WeathAir-macOS";
 			packageProductDependencies = (
-				D9CD641925329F8700685AAC /* WeathAir-Shared */,
+				D9CD64282532A9E700685AAC /* WeathAirShared */,
 			);
 			productName = "WeathAir-macOS";
 			productReference = D9B4788E252AD4B300E86B50 /* WeathAir-macOS.app */;
@@ -363,9 +363,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D9CD641925329F8700685AAC /* WeathAir-Shared */ = {
+		D9CD64282532A9E700685AAC /* WeathAirShared */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = "WeathAir-Shared";
+			productName = WeathAirShared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
