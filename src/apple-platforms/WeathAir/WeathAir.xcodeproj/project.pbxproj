@@ -1,0 +1,135 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		D9B47882252AD48900E86B50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9B47867252AD48800E86B50;
+			remoteInfo = "WeathAir-iOS";
+		};
+		D9B478A8252AD4B400E86B50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9B4788E252AD4B300E86B50;
+			remoteInfo = "WeathAir-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "WeathAir-iOS.xcodeproj"; path = "WeathAir-iOS/WeathAir-iOS.xcodeproj"; sourceTree = "<group>"; };
+		D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "WeathAir-macOS.xcodeproj"; path = "WeathAir-macOS/WeathAir-macOS.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D9B47857252AD44200E86B50 = {
+			isa = PBXGroup;
+			children = (
+				D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */,
+				D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		D9B4787F252AD48900E86B50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9B47883252AD48900E86B50 /* WeathAir-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9B478A5252AD4B300E86B50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9B478A9252AD4B400E86B50 /* WeathAir-macOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		D9B47858252AD44200E86B50 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+			};
+			buildConfigurationList = D9B4785B252AD44200E86B50 /* Build configuration list for PBXProject "WeathAir" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D9B47857252AD44200E86B50;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D9B4787F252AD48900E86B50 /* Products */;
+					ProjectRef = D9B4787E252AD48900E86B50 /* WeathAir-iOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D9B478A5252AD4B300E86B50 /* Products */;
+					ProjectRef = D9B478A4252AD4B300E86B50 /* WeathAir-macOS.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D9B47883252AD48900E86B50 /* WeathAir-iOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "WeathAir-iOS.app";
+			remoteRef = D9B47882252AD48900E86B50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D9B478A9252AD4B400E86B50 /* WeathAir-macOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "WeathAir-macOS.app";
+			remoteRef = D9B478A8252AD4B400E86B50 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin XCBuildConfiguration section */
+		D9B4785C252AD44200E86B50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D9B4785D252AD44200E86B50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D9B4785B252AD44200E86B50 /* Build configuration list for PBXProject "WeathAir" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9B4785C252AD44200E86B50 /* Debug */,
+				D9B4785D252AD44200E86B50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D9B47858252AD44200E86B50 /* Project object */;
+}
