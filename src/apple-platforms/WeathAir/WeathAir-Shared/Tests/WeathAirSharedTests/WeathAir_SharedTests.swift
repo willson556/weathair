@@ -2,7 +2,7 @@ import XCTest
 @testable import WeathAirShared
 
 final class WeathAir_SharedTests: XCTestCase {
-    func TestFetchObservations() {
+    func testFetchObservations() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
@@ -20,6 +20,6 @@ final class WeathAir_SharedTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", TestFetchObservations),
+        ("testFetchObservations", testFetchObservations),
     ]
 }

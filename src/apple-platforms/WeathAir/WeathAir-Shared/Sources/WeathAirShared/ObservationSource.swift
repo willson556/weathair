@@ -8,7 +8,7 @@ import Foundation
 
 
 public class ObservationSource : NSObject, NSCoding{
-     var name : String!
+     public var name : String!
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
