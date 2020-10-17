@@ -9,6 +9,31 @@ import Cocoa
 import SwiftUI
 import WeathAirShared
 
+class CXETextLayer : CATextLayer {
+	override init() {
+		super.init()
+	}
+
+	override init(layer: Any) {
+		super.init(layer: layer)
+	}
+
+	required init(coder aDecoder: NSCoder) {
+		super.init(layer: aDecoder)
+	}
+
+	override func draw(in ctx: CGContext) {
+		let height = self.bounds.size.height
+		let fontSize = self.fontSize
+		let yDiff = (height-fontSize)/2 - fontSize/10
+
+		ctx.saveGState()
+		ctx.translateBy(x: 0.0, y: yDiff)
+		super.draw(in: ctx)
+		ctx.restoreGState()
+	}
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -18,32 +43,56 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var sub : Any?
     
     @State var observation: Observation?
-
+	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Create the SwiftUI view that provides the window contents.
-		let contentView = ContentView()
+		let viewModel = ViewModel()
+		let contentView = ContentView(viewModel)
 
-        
         let popover = NSPopover()
-        popover.contentSize = NSSize(width: 250, height: 100)
+        popover.contentSize = NSSize(width: 200, height: 100)
         popover.behavior = .transient
         popover.contentViewController = NSHostingController(rootView: contentView)
         self.popover = popover
+		
+		self.statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+		let button = self.statusBarItem.button!
+		button.action = #selector(togglePopover(_:))
+		button.layerUsesCoreImageFilters = true
+		button.title = " WeathAir "
+		
+		let layer = CALayer()
+		layer.contentsGravity = CALayerContentsGravity.resizeAspectFill
+		layer.cornerRadius = 8.0
+		layer.masksToBounds = true
+		layer.backgroundColor = NSColor(calibratedRed: 0.0, green: CGFloat(0xe4) / 255, blue: 00, alpha: 1.0).cgColor
+		button.layer = layer
+		
+		let textLayer = CXETextLayer()
+		textLayer.string = "WeathAir"
+		textLayer.frame = layer.bounds
+		textLayer.fontSize = 14.0
+		textLayer.foregroundColor = NSColor.black.cgColor
+		textLayer.font = NSFont.systemFont(ofSize: 14.0, weight: .medium)
+		textLayer.alignmentMode = .center
 
-        self.statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
-        if let button = self.statusBarItem.button {
-            button.title = "AQI"
-             button.action = #selector(togglePopover(_:))
-            
-            sub = contentView.viewModel
-                .objectWillChange
-                .receive(on: DispatchQueue.main)
-                .sink { () in
-                    if let observation = contentView.viewModel.observation {
-                        button.title = "AQI: \(observation.aqiValue ?? -1)"
-                    }
-                }
-        }
+		layer.addSublayer(textLayer)
+		
+		sub = contentView.viewModel
+			.objectWillChange
+			.receive(on: DispatchQueue.main)
+			.sink { () in
+				if let observation = contentView.viewModel.observation {
+					button.title = "AQI \(observation.aqiValue ?? -1)"
+					layer.backgroundColor = observation.color
+				} else {
+					button.title = "WeathAir"
+					layer.backgroundColor = CGColor.clear
+				}
+
+				textLayer.frame = button.frame
+				textLayer.string = button.title
+			}
 	}
     
     @objc func togglePopover(_ sender: AnyObject?) {
@@ -62,4 +111,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 }
-

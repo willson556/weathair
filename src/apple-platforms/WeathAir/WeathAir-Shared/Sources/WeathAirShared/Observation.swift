@@ -19,6 +19,34 @@ public class Observation : NSObject, NSCoding{
     public var source : ObservationSource!
     public var type : String!
     public var validDate : Date!
+	
+	public var color : CGColor {
+		if let aqiValue = aqiValue {
+			switch aqiValue {
+			case ...50:
+				return convertColor(rgb: 0x00e400)
+			case 51...100:
+				return convertColor(rgb: 0xffff00)
+			case 101...150:
+				return convertColor(rgb: 0xff7e000)
+			case 151...200:
+				return convertColor(rgb: 0xff0000)
+			case 201...300:
+				return convertColor(rgb: 0x8f3f97)
+			case 301...:
+				return convertColor(rgb: 0x7e0023)
+			default:
+				return CGColor.clear
+			}
+		} else {
+			return CGColor.clear
+		}
+
+	}
+	
+	private func convertColor(rgb: Int32) -> CGColor {
+		return CGColor(red: CGFloat(rgb >> 16) / 255.0, green: CGFloat((rgb >> 8) & 0xFF) / 255.0, blue: CGFloat(rgb & 0xFF) / 255.0, alpha: 1.0)
+	}
     
     /**
      * Instantiate the instance using the passed json values to set the properties values

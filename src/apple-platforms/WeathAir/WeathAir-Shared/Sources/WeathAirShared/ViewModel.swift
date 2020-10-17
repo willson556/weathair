@@ -11,7 +11,11 @@ import CoreLocation
 import MapKit
 
 public class ViewModel : ObservableObject {
-    @Published public var zipCode: String = ""
+	@Published public var zipCode: String = "" {
+		didSet {
+			loadData()
+		}
+	}
     @Published public var observation: Observation? = nil
     
     private let api : ObservationAPIService
