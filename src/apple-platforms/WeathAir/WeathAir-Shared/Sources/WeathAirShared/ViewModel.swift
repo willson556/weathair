@@ -24,13 +24,13 @@ public class ViewModel : ObservableObject {
     private let geocoder = CLGeocoder()
     
     public init() {
-        api = ObservationAPIService(url: "http://127.0.0.1:8000/api/v1/observations-for-zip/")
+        api = ObservationAPIService(url: "https://api.weathair.net/api/v1/observations-for-zip/")
         
         let start = DispatchQueue.SchedulerTimeType(DispatchTime
                                                         .now()
-                                                        .advanced(by: DispatchTimeInterval.seconds(20)))
-        let interval = DispatchQueue.SchedulerTimeType.Stride(20)
-        let tolerance = DispatchQueue.SchedulerTimeType.Stride(5)
+														.advanced(by: DispatchTimeInterval.seconds(20)))
+		let interval = DispatchQueue.SchedulerTimeType.Stride(DispatchTimeInterval.seconds(60 * 5))
+        let tolerance = DispatchQueue.SchedulerTimeType.Stride(60)
         
         locationManager = LocationDelegate(callback: gotLocation)
         
