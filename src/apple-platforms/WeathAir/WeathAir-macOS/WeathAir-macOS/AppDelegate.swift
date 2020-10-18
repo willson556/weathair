@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 	var sub : Any?
 	var caLayer: CALayer?
 	var textLayer: CATextLayer?
-	var textBorderColor: CGColor?
+	var systemColorToken: NSKeyValueObservation?
 	
 	@State var observation: Observation?
 	
@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 		textLayer = CXETextLayer()
 		textLayer!.cornerRadius = 10.0
 		textLayer!.masksToBounds = true
-		textLayer!.backgroundColor = NSColor(calibratedRed: 0.0, green: CGFloat(0xe4) / 255, blue: 00, alpha: 1.0).cgColor
+		textLayer!.backgroundColor = NSColor.controlAccentColor.cgColor
 		textLayer!.borderWidth = 3.0
 		textLayer!.string = "WeathAir"
 		textLayer!.frame = layer.bounds
@@ -81,7 +81,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 		textLayer!.foregroundColor = NSColor.black.cgColor
 		textLayer!.font = NSFont.systemFont(ofSize: 12.0, weight: .bold)
 		textLayer!.alignmentMode = .center
-		textBorderColor = textLayer!.borderColor
+
+		updateMenuItemColors(popoverShown: false)
 		
 		layer.addSublayer(textLayer!)
 		self.caLayer = layer
@@ -91,16 +92,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 			.receive(on: DispatchQueue.main)
 			.sink { () in
 				if let observation = contentView.viewModel.observation {
-					button.title = "AQI \(observation.aqiValue ?? -1)"
+					button.title = " AQI \(observation.aqiValue ?? -1) " // Text has padding to make the button bigger
 					self.textLayer!.backgroundColor = observation.color
 				} else {
-					button.title = "WeathAir"
-					self.textLayer!.backgroundColor = self.textBorderColor
+					button.title = " WeathAir "
+					self.textLayer!.backgroundColor = self.getClearBackgroundColor()
 				}
 				
 				self.textLayer!.frame = button.frame
-				self.textLayer!.string = button.title
+				self.textLayer!.string = button.title.trimmingCharacters(in: .whitespaces)
 			}
+		
+		systemColorToken = NSApp.observe(\.effectiveAppearance) { (app, value) in
+			self.systemColorsChanged()
+		}
 	}
 	
 	@objc func togglePopover(_ sender: AnyObject?) {
@@ -108,20 +113,41 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 			if self.popover.isShown {
 				self.popover.performClose(sender)
 			} else {
-				let color = NSColor.selectedMenuItemColor.cgColor
-				self.textLayer?.borderColor = color
-				self.caLayer?.backgroundColor = color
+				updateMenuItemColors(popoverShown: true)
 				self.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
 			}
 		}
 	}
 	
+	func isDarkMode() -> Bool {
+		return NSApp.effectiveAppearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
+	}
+	
+	func systemColorsChanged() {
+		updateMenuItemColors(popoverShown: popover.isShown)
+	}
+	
+	func updateMenuItemColors(popoverShown: Bool) {
+		if popoverShown {
+			let color = NSColor.selectedMenuItemColor.cgColor
+			self.textLayer?.borderColor = color
+			self.caLayer?.backgroundColor = color
+		} else {
+			self.caLayer?.backgroundColor = NSColor.clear.cgColor
+			self.textLayer?.borderColor = getClearBackgroundColor()
+		}
+	}
+	
+	func getClearBackgroundColor() -> CGColor {
+		return isDarkMode() ? NSColor.black.cgColor : NSColor.white.cgColor
+	}
+	
 	func applicationWillTerminate(_ aNotification: Notification) {
-		// Insert code here to tear down your application
+		systemColorToken?.invalidate()
 	}
 	
 	func popoverWillClose(_ notification: Notification) {
-		self.caLayer?.backgroundColor = NSColor.clear.cgColor
-		self.textLayer?.borderColor = textBorderColor
+		updateMenuItemColors(popoverShown: false)
 	}
+	
 }
