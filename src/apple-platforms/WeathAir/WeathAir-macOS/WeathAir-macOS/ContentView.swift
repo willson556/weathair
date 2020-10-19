@@ -47,6 +47,11 @@ struct ContentView: View {
                 Group {
                     if let observation = self.viewModel.observation {
                         Text("AQI \(observation.aqiValue)")
+						Text("Observation From: \(observation.validDate.toString())")
+						
+						if let refreshTime = self.viewModel.observationsRefreshed {
+							Text("Loaded from Server: \(refreshTime.toString())")
+						}
 					} else if !self.viewModel.zipCode.isEmpty {
                         Text("No observation for \(self.viewModel.zipCode)")
 					}
@@ -78,6 +83,6 @@ struct ContentView_Previews: PreviewProvider {
 		Group {
 			ContentView(viewModel)
 		
-		}.frame(width: 200, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+		}.frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
 }

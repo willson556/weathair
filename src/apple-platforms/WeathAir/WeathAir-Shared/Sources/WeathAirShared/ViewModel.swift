@@ -16,8 +16,10 @@ public class ViewModel : ObservableObject {
 			loadData()
 		}
 	}
+	
     @Published public var observation: Observation? = nil
-    
+	@Published public var observationsRefreshed: Date? = nil
+	
     private let api : ObservationAPIService
     private var refreshTask : Cancellable? = nil
     private var locationManager : LocationDelegate!
@@ -77,6 +79,7 @@ public class ViewModel : ObservableObject {
             
             DispatchQueue.main.async {
                 self.observation = observations.first(where: {o in o.type == "O" && o.primaryPollutant})
+				self.observationsRefreshed = Date()
             }
         }
     }
