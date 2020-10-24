@@ -14,6 +14,10 @@ public class ViewModel : ObservableObject {
 	@Published public var zipCode: String = "" {
 		didSet {
 			loadData()
+			
+			if zipCode != SettingsStore.getDefaultZipCode() {
+				SettingsStore.setDefaultZipCode(zipCode)
+			}
 		}
 	}
 	
@@ -35,6 +39,10 @@ public class ViewModel : ObservableObject {
         let tolerance = DispatchQueue.SchedulerTimeType.Stride(60)
         
         locationManager = LocationDelegate(callback: gotLocation)
+		
+		if let defaultZipCode = SettingsStore.getDefaultZipCode() {
+			zipCode = defaultZipCode
+		}
         
         refreshTask = DispatchQueue.main.schedule(after: start, interval:interval, tolerance: tolerance, options: nil) {
             self.loadData()
@@ -85,8 +93,10 @@ public class ViewModel : ObservableObject {
     }
     
     private class LocationDelegate : NSObject, CLLocationManagerDelegate {
+		private let updateInterval = TimeInterval(60*15) // 15 minutes
         private let locationManager = CLLocationManager()
         private let callback: (_: CLLocation) -> Void
+		private var lastLocation: (location: CLLocation, time: Date)?
         
         init(callback: @escaping (_: CLLocation) -> Void) {
             self.callback = callback
@@ -96,6 +106,11 @@ public class ViewModel : ObservableObject {
         }
         
         func requestLocation() {
+			// Callback immediately with cached location if it's not too out of date
+			if lastLocation != nil && lastLocation!.time + updateInterval > Date() {
+				callback(lastLocation!.location)
+			}
+			
             #if os(iOS)
             CLLocationManager().requestWhenInUseAuthorization()
             let status = CLLocationManager.authorizationStatus()
@@ -113,6 +128,7 @@ public class ViewModel : ObservableObject {
         }
         
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+			lastLocation = (locations[0], Date())
             callback(locations[0])
         }
         
