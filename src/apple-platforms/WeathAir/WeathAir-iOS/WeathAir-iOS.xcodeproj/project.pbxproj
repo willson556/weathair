@@ -8,15 +8,54 @@
 
 /* Begin PBXBuildFile section */
 		D92CD5DA2544EF5000E461F6 /* WeathAirShared in Frameworks */ = {isa = PBXBuildFile; productRef = D92CD5D92544EF5000E461F6 /* WeathAirShared */; };
+		D92CD5E52544F70100E461F6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92CD5E42544F70100E461F6 /* WidgetKit.framework */; };
+		D92CD5E72544F70100E461F6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92CD5E62544F70100E461F6 /* SwiftUI.framework */; };
+		D92CD5EA2544F70100E461F6 /* WeathairWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92CD5E92544F70100E461F6 /* WeathairWidget.swift */; };
+		D92CD5ED2544F70400E461F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D92CD5EC2544F70400E461F6 /* Assets.xcassets */; };
+		D92CD5EF2544F70400E461F6 /* WeathairWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D92CD5EB2544F70100E461F6 /* WeathairWidget.intentdefinition */; };
+		D92CD5F02544F70400E461F6 /* WeathairWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D92CD5EB2544F70100E461F6 /* WeathairWidget.intentdefinition */; };
+		D92CD5F32544F70400E461F6 /* WeathairWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D92CD5E32544F70100E461F6 /* WeathairWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9B4786B252AD48800E86B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B4786A252AD48800E86B50 /* AppDelegate.swift */; };
 		D9B4786D252AD48800E86B50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B4786C252AD48800E86B50 /* SceneDelegate.swift */; };
 		D9B4786F252AD48800E86B50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B4786E252AD48800E86B50 /* ContentView.swift */; };
 		D9B47871252AD48900E86B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47870252AD48900E86B50 /* Assets.xcassets */; };
 		D9B47874252AD48900E86B50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B47873252AD48900E86B50 /* Preview Assets.xcassets */; };
 		D9B47877252AD48900E86B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B47875252AD48900E86B50 /* LaunchScreen.storyboard */; };
+		D9F3EE7A2546706300EC717D /* WeathAirShared in Frameworks */ = {isa = PBXBuildFile; productRef = D9F3EE792546706300EC717D /* WeathAirShared */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D92CD5F12544F70400E461F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9B4785F252AD48800E86B50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D92CD5E22544F70100E461F6;
+			remoteInfo = WeathairWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D92CD5F72544F70400E461F6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D92CD5F32544F70400E461F6 /* WeathairWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D92CD5E32544F70100E461F6 /* WeathairWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeathairWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D92CD5E42544F70100E461F6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D92CD5E62544F70100E461F6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D92CD5E92544F70100E461F6 /* WeathairWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeathairWidget.swift; sourceTree = "<group>"; };
+		D92CD5EB2544F70100E461F6 /* WeathairWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WeathairWidget.intentdefinition; sourceTree = "<group>"; };
+		D92CD5EC2544F70400E461F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D92CD5EE2544F70400E461F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9B47867252AD48800E86B50 /* WeathAir-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeathAir-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B4786A252AD48800E86B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9B4786C252AD48800E86B50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +67,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D92CD5E02544F70100E461F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9F3EE7A2546706300EC717D /* WeathAirShared in Frameworks */,
+				D92CD5E72544F70100E461F6 /* SwiftUI.framework in Frameworks */,
+				D92CD5E52544F70100E461F6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B47864252AD48800E86B50 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,10 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D92CD5E82544F70100E461F6 /* WeathairWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D92CD5E92544F70100E461F6 /* WeathairWidget.swift */,
+				D92CD5EB2544F70100E461F6 /* WeathairWidget.intentdefinition */,
+				D92CD5EC2544F70400E461F6 /* Assets.xcassets */,
+				D92CD5EE2544F70400E461F6 /* Info.plist */,
+			);
+			path = WeathairWidget;
+			sourceTree = "<group>";
+		};
 		D9B4785E252AD48800E86B50 = {
 			isa = PBXGroup;
 			children = (
 				D9B47869252AD48800E86B50 /* WeathAir-iOS */,
+				D92CD5E82544F70100E461F6 /* WeathairWidget */,
 				D9B47868252AD48800E86B50 /* Products */,
 				D9CD641B25329F9100685AAC /* Frameworks */,
 			);
@@ -52,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				D9B47867252AD48800E86B50 /* WeathAir-iOS.app */,
+				D92CD5E32544F70100E461F6 /* WeathairWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +143,8 @@
 		D9CD641B25329F9100685AAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D92CD5E42544F70100E461F6 /* WidgetKit.framework */,
+				D92CD5E62544F70100E461F6 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -88,6 +152,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D92CD5E22544F70100E461F6 /* WeathairWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D92CD5F42544F70400E461F6 /* Build configuration list for PBXNativeTarget "WeathairWidgetExtension" */;
+			buildPhases = (
+				D92CD5DF2544F70100E461F6 /* Sources */,
+				D92CD5E02544F70100E461F6 /* Frameworks */,
+				D92CD5E12544F70100E461F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeathairWidgetExtension;
+			packageProductDependencies = (
+				D9F3EE792546706300EC717D /* WeathAirShared */,
+			);
+			productName = WeathairWidgetExtension;
+			productReference = D92CD5E32544F70100E461F6 /* WeathairWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D9B47866252AD48800E86B50 /* WeathAir-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9B4787B252AD48900E86B50 /* Build configuration list for PBXNativeTarget "WeathAir-iOS" */;
@@ -95,10 +179,12 @@
 				D9B47863252AD48800E86B50 /* Sources */,
 				D9B47864252AD48800E86B50 /* Frameworks */,
 				D9B47865252AD48800E86B50 /* Resources */,
+				D92CD5F72544F70400E461F6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D92CD5F22544F70400E461F6 /* PBXTargetDependency */,
 			);
 			name = "WeathAir-iOS";
 			packageProductDependencies = (
@@ -114,9 +200,12 @@
 		D9B4785F252AD48800E86B50 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					D92CD5E22544F70100E461F6 = {
+						CreatedOnToolsVersion = 12.1;
+					};
 					D9B47866252AD48800E86B50 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -136,11 +225,20 @@
 			projectRoot = "";
 			targets = (
 				D9B47866252AD48800E86B50 /* WeathAir-iOS */,
+				D92CD5E22544F70100E461F6 /* WeathairWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D92CD5E12544F70100E461F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D92CD5ED2544F70400E461F6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B47865252AD48800E86B50 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,17 +252,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D92CD5DF2544F70100E461F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D92CD5EA2544F70100E461F6 /* WeathairWidget.swift in Sources */,
+				D92CD5EF2544F70400E461F6 /* WeathairWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B47863252AD48800E86B50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D9B4786B252AD48800E86B50 /* AppDelegate.swift in Sources */,
+				D92CD5F02544F70400E461F6 /* WeathairWidget.intentdefinition in Sources */,
 				D9B4786D252AD48800E86B50 /* SceneDelegate.swift in Sources */,
 				D9B4786F252AD48800E86B50 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D92CD5F22544F70400E461F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D92CD5E22544F70100E461F6 /* WeathairWidgetExtension */;
+			targetProxy = D92CD5F12544F70400E461F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D9B47875252AD48900E86B50 /* LaunchScreen.storyboard */ = {
@@ -178,6 +294,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D92CD5F52544F70400E461F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2C26AD8SGU;
+				INFOPLIST_FILE = WeathairWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thomasewillson.Weathair.WeathairWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D92CD5F62544F70400E461F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2C26AD8SGU;
+				INFOPLIST_FILE = WeathairWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thomasewillson.Weathair.WeathairWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D9B47879252AD48900E86B50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,6 +457,7 @@
 		D9B4787C252AD48900E86B50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -318,6 +479,7 @@
 		D9B4787D252AD48900E86B50 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -339,6 +501,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D92CD5F42544F70400E461F6 /* Build configuration list for PBXNativeTarget "WeathairWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D92CD5F52544F70400E461F6 /* Debug */,
+				D92CD5F62544F70400E461F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D9B47862252AD48800E86B50 /* Build configuration list for PBXProject "WeathAir-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -361,6 +532,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		D92CD5D92544EF5000E461F6 /* WeathAirShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeathAirShared;
+		};
+		D9F3EE792546706300EC717D /* WeathAirShared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WeathAirShared;
 		};

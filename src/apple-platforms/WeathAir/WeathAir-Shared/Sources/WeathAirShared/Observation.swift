@@ -4,9 +4,13 @@
 //  Created on October 11, 2020
 
 import SwiftyJSON
-import Cocoa
+#if os(macOS)
+ import Cocoa
+#else
+ import UIKit
+#endif
 
-public class Observation : NSObject, NSCoding{
+public class Observation : NSObject, NSCoding {
     
     public var aqiCategory : String!
     public var aqiValue : Int!
@@ -21,6 +25,12 @@ public class Observation : NSObject, NSCoding{
     public var validDate : Date!
 	
 	public var color : CGColor {
+		#if os(macOS)
+		let defaultColor = CGColor.clear
+		#else
+		let defaultColor = CGColor(red: 1, green: 1, blue: 1, alpha: 0)
+		#endif
+		
 		if let aqiValue = aqiValue {
 			switch aqiValue {
 			case ...50:
@@ -36,16 +46,32 @@ public class Observation : NSObject, NSCoding{
 			case 301...:
 				return convertColor(rgb: 0x7e0023)
 			default:
-				return CGColor.clear
+				return defaultColor
 			}
 		} else {
-			return CGColor.clear
+			return defaultColor
 		}
 
 	}
 	
 	private func convertColor(rgb: Int32) -> CGColor {
 		return CGColor(red: CGFloat(rgb >> 16) / 255.0, green: CGFloat((rgb >> 8) & 0xFF) / 255.0, blue: CGFloat(rgb & 0xFF) / 255.0, alpha: 1.0)
+	}
+	
+	public override init() {
+		aqiCategory = "Good"
+		aqiValue = 35
+		discussion = "It should get better tomorrow!"
+		issuedDate = Date()
+		parameterName = "PM2.5"
+		primaryPollutant = true
+		recordSequence = 0
+		reportingArea = ReportingArea()
+		source = ObservationSource()
+		type = "O"
+		validDate = Date()
+		
+		super.init()
 	}
     
     /**

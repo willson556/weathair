@@ -9,6 +9,11 @@ import Foundation
 
 public class ObservationSource : NSObject, NSCoding{
      public var name : String!
+	
+	override init() {
+		super.init()
+		name = "San Francisco Bay Area AQMD"
+	}
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values

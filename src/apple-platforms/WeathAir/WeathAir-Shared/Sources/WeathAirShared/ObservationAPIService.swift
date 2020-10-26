@@ -17,6 +17,10 @@ public struct ObservationAPIService {
     let url: String
     
     public typealias ObservationCallback = (_ error: Error?, _ observations: [Observation]?) -> ()
+	
+	public init() {
+		self.url = "https://api.weathair.net/api/v1/observations-for-zip/"
+	}
     
     public init(url: String) {
         self.url = url

@@ -7,14 +7,22 @@
 
 import Foundation
 
-class SettingsStore {
-	static let defaultZipCodeKey = "DefaultZipCode"
+public protocol SettingsStore {
+	func setDefaultZipCode(_ zipCode: String)
 	
-	static func setDefaultZipCode(_ zipCode: String) {
+	func getDefaultZipCode() -> String?
+}
+
+public class DefaultsSettingsStore: SettingsStore {
+	let defaultZipCodeKey = "DefaultZipCode"
+	
+	public init() {}
+	
+	public func setDefaultZipCode(_ zipCode: String) {
 		UserDefaults.standard.set(zipCode, forKey: defaultZipCodeKey)
 	}
 	
-	static func getDefaultZipCode() -> String? {
+	public func getDefaultZipCode() -> String? {
 		return UserDefaults.standard.string(forKey: defaultZipCodeKey)
 	}
 }

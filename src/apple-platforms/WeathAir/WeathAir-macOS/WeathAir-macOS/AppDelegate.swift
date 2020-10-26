@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Create the SwiftUI view that provides the window contents.
-		let viewModel = ViewModel()
+		let viewModel = ViewModel(settingsStore: DefaultsSettingsStore())
 		let contentView = ContentView(viewModel)
 		
 		let popover = NSPopover()

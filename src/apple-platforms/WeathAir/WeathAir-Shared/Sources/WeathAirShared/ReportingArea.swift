@@ -13,6 +13,13 @@ public class ReportingArea : NSObject, NSCoding{
     public var location : CLLocationCoordinate2D!
     public var name : String!
     public var stateCode : String!
+	
+	override init() {
+		super.init()
+		location = CLLocationCoordinate2D(latitude: -121.9, longitude: 37.33)
+		name = "San Jose"
+		stateCode = "CA"
+	}
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values

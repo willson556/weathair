@@ -15,8 +15,8 @@ public class ViewModel : ObservableObject {
 		didSet {
 			loadData()
 			
-			if zipCode != SettingsStore.getDefaultZipCode() {
-				SettingsStore.setDefaultZipCode(zipCode)
+			if zipCode != settingsStore.getDefaultZipCode() {
+				settingsStore.setDefaultZipCode(zipCode)
 			}
 		}
 	}
@@ -24,13 +24,15 @@ public class ViewModel : ObservableObject {
     @Published public var observation: Observation? = nil
 	@Published public var observationsRefreshed: Date? = nil
 	
+	private let settingsStore: SettingsStore
     private let api : ObservationAPIService
     private var refreshTask : Cancellable? = nil
     private var locationManager : LocationDelegate!
     private let geocoder = CLGeocoder()
     
-    public init() {
-        api = ObservationAPIService(url: "https://api.weathair.net/api/v1/observations-for-zip/")
+	public init(settingsStore: SettingsStore) {
+		self.settingsStore = settingsStore
+        api = ObservationAPIService()
         
         let start = DispatchQueue.SchedulerTimeType(DispatchTime
                                                         .now()
@@ -40,7 +42,7 @@ public class ViewModel : ObservableObject {
         
         locationManager = LocationDelegate(callback: gotLocation)
 		
-		if let defaultZipCode = SettingsStore.getDefaultZipCode() {
+		if let defaultZipCode = settingsStore.getDefaultZipCode() {
 			zipCode = defaultZipCode
 		}
         
