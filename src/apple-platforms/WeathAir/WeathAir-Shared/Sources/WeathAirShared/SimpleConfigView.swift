@@ -40,7 +40,7 @@ public struct SimpleConfigView: View {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct SimpleConfigView_Previews: PreviewProvider {
 	static var viewModel : ViewModel {
 		let vm = ViewModel(settingsStore: DefaultsSettingsStore())
 		vm.zipCode = "95136"

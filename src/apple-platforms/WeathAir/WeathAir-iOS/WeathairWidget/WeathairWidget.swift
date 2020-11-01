@@ -36,7 +36,7 @@ struct Provider: IntentTimelineProvider {
 	
 	func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
 		getSnapshot(for: configuration, in: context) { (entry) in
-			let timeline = Timeline(entries: [entry], policy: .after(Calendar.current.date(byAdding: .minute, value: 30, to: Date())!))
+			let timeline = Timeline(entries: [entry], policy: .after(Calendar.current.date(byAdding: .minute, value: 15, to: Date())!))
 			completion(timeline)
 		}
 	}
@@ -56,14 +56,15 @@ struct WeathairWidgetEntryView : View {
 			Spacer()
 			VStack {
 				Spacer()
-				Text(entry.configuration.ZipCode ?? "")
-				Text("AQI: \(entry.observation.aqiValue)")
+				Text(entry.configuration.ZipCode ?? "").foregroundColor(.black)
+				Text("AQI: \(entry.observation.aqiValue)").foregroundColor(.black)
+				Text(entry.observation.validDate, style: .time).foregroundColor(.black)
 				Spacer()
 			}
 			Spacer()
 		}
 		.padding()
-		.background(ContainerRelativeShape().fill(Color(entry.observation.color)))
+		.background(Color(entry.observation.color))
 	}
 }
 
