@@ -41,6 +41,12 @@ AQI_DATA_DATES = {
     'IssueDateTime': [0],
 }
 
+TIMEZONE_CONVERSIONS = {
+    # The Alaska time zones don't seem to be reported correctly.
+    'AKT': 'AKST',
+    'ADT': 'AKDT',
+}
+
 
 def _print_status(status):
     print("Results of bulk_sync: "
@@ -56,7 +62,11 @@ def _convert_valid_time(obs):
     if isnull(obs['ValidTime']) or isnull(obs['TimeZone']):
         return datetime.strptime(obs['ValidDate'], '%m/%d/%y')
 
-    datestring = f'{obs["ValidDate"]} {obs["ValidTime"]} {obs["TimeZone"]}'
+    timezone = obs["TimeZone"]
+    timezone = TIMEZONE_CONVERSIONS.get(
+        timezone, timezone)  # Convert if possible
+
+    datestring = f'{obs["ValidDate"]} {obs["ValidTime"]} {timezone}'
     date = dateparser.parse(datestring, settings={'DATE_ORDER': 'MDY'})
 
     if date is None:
@@ -82,6 +92,29 @@ def update_cityzipcode():
     _print_status(bulk_sync(new_models, ('zipcode', ), None))
 
 
+def _convert_observation(o, reporting_areas_db, forecast_sources_db):
+    try:
+        return AirNowObservation(reporting_area=_find_first(reporting_areas_db,
+                                                            lambda a: a.name == o['ReportingArea'] and a.state_code == o['StateCode']), # TODO Might be faster to store in a dictionary.
+                                 issued_date=_ensure_tz_aware(
+                                     o['IssueDateTime'].to_pydatetime()),
+                                 valid_date=_ensure_tz_aware(
+                                     _convert_valid_time(o)),
+                                 record_sequence=o['RecordSequence'],
+                                 parameter_name=o['ParameterName'],
+                                 aqi_value=o['AQIValue'] if not isnull(
+                                     o['AQIValue']) else None,
+                                 aqi_category=o['AQICategory'],
+                                 primary_pollutant=o['Primary'] == 'Y',
+                                 type=o['DataType'],
+                                 discussion=o['Discussion'] if not isnull(
+                                     o['Discussion']) else None,
+                                 source=_find_first(forecast_sources_db,
+                                                    lambda s: s.name == o['ForecastSource'])) # TODO Might be faster to store in a dictionary.
+    except:
+        return None # TODO Logging
+
+
 @transaction.atomic
 def update_aqi():
     dataframe = pd.read_csv(AQI_DATA_URL, delimiter='|', usecols=range(17), names=AQI_DATA_COLUMN_NAMES,
@@ -101,23 +134,9 @@ def update_aqi():
     reporting_areas_db = list(AirNowReportingArea.objects.all())
     forecast_sources_db = list(AirNowForecastSource.objects.all())
 
-    observations = [AirNowObservation(reporting_area=_find_first(reporting_areas_db,
-                                                                 lambda a: a.name == o['ReportingArea'] and a.state_code == o['StateCode']),
-                                      issued_date=_ensure_tz_aware(
-                                          o['IssueDateTime'].to_pydatetime()),
-                                      valid_date=_ensure_tz_aware(
-                                          _convert_valid_time(o)),
-                                      record_sequence=o['RecordSequence'],
-                                      parameter_name=o['ParameterName'],
-                                      aqi_value=o['AQIValue'] if not isnull(
-                                          o['AQIValue']) else None,
-                                      aqi_category=o['AQICategory'],
-                                      primary_pollutant=o['Primary'] == 'Y',
-                                      type=o['DataType'],
-                                      discussion=o['Discussion'] if not isnull(
-                                          o['Discussion']) else None,
-                                      source=_find_first(forecast_sources_db,
-                                                         lambda s: s.name == o['ForecastSource']))
-                    for (_, o) in dataframe.iterrows() if o['StateCode'] != '  ']
+    observations = [_convert_observation(o, reporting_areas_db, forecast_sources_db) for (
+        _, o) in dataframe.iterrows() if o['StateCode'] != '  ']
+    observations = [
+        observation for observation in observations if observation is not None]
     _print_status(bulk_sync(observations, ('reporting_area_id', 'issued_date', 'valid_date', 'record_sequence',
                                            'parameter_name', 'aqi_value', 'aqi_category', 'primary_pollutant', 'type'), None))
